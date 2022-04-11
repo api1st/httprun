@@ -10,8 +10,8 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_Auth_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
 
         public Executor_Auth_Fixture(ITestOutputHelper outputHelper)
         {
@@ -40,7 +40,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(3));
 
-            Assert.Equal(401, result.Item3.StatusCode);
+            Assert.Equal(401, result.Item3?.StatusCode);
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(1));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(2));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
         }
     }
 }

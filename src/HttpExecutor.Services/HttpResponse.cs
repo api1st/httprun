@@ -16,11 +16,11 @@ namespace HttpExecutor.Services
 
         public int StatusCode { get; set; }
 
-        public string StatusPhrase { get; set; }
+        public string? StatusPhrase { get; set; }
 
         public ICollection<IHttpHeader> Headers { get; }
 
-        public string Body { get; set; }
+        public string? Body { get; set; }
         
         public override string ToString()
         {
@@ -35,15 +35,18 @@ namespace HttpExecutor.Services
 
             ret.Add("");
 
-            if (Headers.Any(x => x.Name.ToLower() == "content-type" && x.Value.Contains("application/json")))
+            if (Body != null)
             {
-                ret.Add(ColourisePrettyJson(Body));
+                if (Headers.Any(x => x.Name.ToLower() == "content-type" && x.Value.Contains("application/json")))
+                {
+                    ret.Add(ColourisePrettyJson(Body));
+                }
+                else
+                {
+                    ret.Add(Body);
+                }
             }
-            else
-            {
-                ret.Add(Body);
-            }
-
+            
             return string.Join(Environment.NewLine, ret);
         }
 

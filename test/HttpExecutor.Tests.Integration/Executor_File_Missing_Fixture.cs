@@ -12,10 +12,9 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_File_Missing_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private IAppOptions _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IAppOptions _appOptions;
         
         public Executor_File_Missing_Fixture(ITestOutputHelper outputHelper)
         {
@@ -37,8 +36,6 @@ namespace HttpExecutor.Tests.Integration
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
-
-            _variableProvider = provider.GetRequiredService<IVariableProvider>();
 
             _subject = provider.GetRequiredService<IBlockExecutor>();
         }

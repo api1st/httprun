@@ -4,12 +4,13 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <StartupObject>HttpExecutor.Program</StartupObject>
+	<RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
     <Company>Apiway</Company>
     <Product>httprun</Product>
     <PackageId>httprun</PackageId>
     <Authors>Ashley Beeson</Authors>
     <AssemblyName>httprun</AssemblyName>
-    <Copyright>Apiway Ltd 2021</Copyright>
+    <Copyright>Apiway Ltd 2022</Copyright>
     <PackageIcon>a.png</PackageIcon>
   </PropertyGroup>
 

@@ -12,10 +12,10 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_Get_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private Mock<IAppOptions> _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly Mock<IAppOptions> _appOptions;
 
         public Executor_Get_Fixture(ITestOutputHelper outputHelper)
         {
@@ -50,7 +50,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get", _variableProvider.Resolve("{{oneGet1.response.body.$.url}}"));
         }
 
@@ -62,7 +62,7 @@ namespace HttpExecutor.Tests.Integration
             
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(1));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal($"http://httpbin.org/get?id={headerValue}", _variableProvider.Resolve("{{oneGet2.response.body.$.url}}"));
         }
 
@@ -73,7 +73,7 @@ namespace HttpExecutor.Tests.Integration
             
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(2));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?id={{oneGetInvalid.response.headers.content-length}}", _variableProvider.Resolve("{{oneGet3.response.body.$.url}}"));
         }
 
@@ -103,7 +103,7 @@ namespace HttpExecutor.Tests.Integration
             await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(3));
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(5));
 
-            Assert.NotNull(result.Item2.Headers.FirstOrDefault(x => x.Name == "X-Ash"));
+            Assert.NotNull(result.Item2?.Headers.FirstOrDefault(x => x.Name == "X-Ash"));
             Assert.Equal("Has a value", _variableProvider.Resolve("{{oneGet5.response.body.$.headers.X-Ash}}"));
         }
 
@@ -122,7 +122,7 @@ namespace HttpExecutor.Tests.Integration
 
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(8));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("https://httpbingo.org/get", _variableProvider.Resolve("{{oneGet8.response.body.$.url}}"));
         }
 
@@ -134,7 +134,7 @@ namespace HttpExecutor.Tests.Integration
 
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(9));
 
-            Assert.Equal("Following of HTTP Redirect failed, possibly due to https->http redirection.", result.Item2.Body);
+            Assert.Equal("Following of HTTP Redirect failed, possibly due to https->http redirection.", result.Item2?.Body);
         }
 
         [Fact]
@@ -144,7 +144,7 @@ namespace HttpExecutor.Tests.Integration
 
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(8));
 
-            Assert.Equal(302, result.Item3.StatusCode);
+            Assert.Equal(302, result.Item3?.StatusCode);
         }
 
         [Fact]
@@ -155,7 +155,7 @@ namespace HttpExecutor.Tests.Integration
 
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(10));
 
-            Assert.Equal("HTTP Request timeout.", result.Item3.Body);
+            Assert.Equal("HTTP Request timeout.", result.Item3?.Body);
         }
 
         [Fact]

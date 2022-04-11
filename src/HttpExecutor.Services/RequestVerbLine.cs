@@ -9,7 +9,7 @@ namespace HttpExecutor.Services
         private const string GroupsRegex =
             "^(?<verb>GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS|TRACE)[ \\t]+((?<scheme>http:\\/\\/|https:\\/\\/)(?<userpass>.*@)?(?<host>[^:\\/]*(:\\d{1,5}?)?)?)?\\/?(?<path>[a-zA-Z0-9\\.\\/\\-\\?\\=\\&_{}\\$%@:]*)[ \t]+HTTP\\/1\\.1[ \t]*$";
 
-        public RequestVerbLine(string value, IBlockLine previous, int lineNumber)
+        public RequestVerbLine(string value, IBlockLine? previous, int lineNumber)
         {
             Raw = value;
             Previous = previous;
@@ -20,7 +20,7 @@ namespace HttpExecutor.Services
 
         public string Raw { get; }
 
-        public IBlockLine Previous { get; set; }
+        public IBlockLine? Previous { get; set; }
 
         public int LineNumber { get; }
 

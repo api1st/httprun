@@ -12,10 +12,10 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_VariableResolution_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private Mock<IAppOptions> _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly Mock<IAppOptions> _appOptions;
 
         public Executor_VariableResolution_Fixture(ITestOutputHelper outputHelper)
         {
@@ -126,7 +126,7 @@ namespace HttpExecutor.Tests.Integration
             // execute test
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(7));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/anything/1", _variableProvider.Resolve("{{eightVariables7.response.body.$.url}}"));
         }
     }

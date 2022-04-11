@@ -11,9 +11,9 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_QueryString_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
 
         public Executor_QueryString_Fixture(ITestOutputHelper outputHelper)
         {
@@ -44,7 +44,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes", _variableProvider.Resolve("{{fourQuery1.response.body.$.url}}"));
         }
 
@@ -53,7 +53,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(1));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes&two=no", _variableProvider.Resolve("{{fourQuery2.response.body.$.url}}"));
         }
 
@@ -62,7 +62,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(2));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes&two=no", _variableProvider.Resolve("{{fourQuery3.response.body.$.url}}"));
         }
 
@@ -71,7 +71,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(3));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes&two=no&three=16", _variableProvider.Resolve("{{fourQuery4.response.body.$.url}}"));
         }
 
@@ -80,7 +80,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(4));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes&two=no&three=16", _variableProvider.Resolve("{{fourQuery5.response.body.$.url}}"));
         }
 
@@ -89,7 +89,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(5));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=yes&two=no&three=16", _variableProvider.Resolve("{{fourQuery6.response.body.$.url}}"));
         }
 
@@ -98,7 +98,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(6));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the body.", _variableProvider.Resolve("{{fourQuery7.response.body.$.data}}"));
         }
 
@@ -107,7 +107,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(7));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get?one=Yes&two=no&three=16", _variableProvider.Resolve("{{fourQuery8.response.body.$.url}}"));
         }
     }

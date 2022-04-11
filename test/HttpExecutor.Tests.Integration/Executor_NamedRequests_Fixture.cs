@@ -11,10 +11,10 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_NamedRequests_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private IAppOptions _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly IAppOptions _appOptions;
 
         public Executor_NamedRequests_Fixture(ITestOutputHelper outputHelper)
         {
@@ -47,7 +47,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/get", _variableProvider.Resolve("{{sevenGet1.response.body.$.url}}"));
         }
 
@@ -56,7 +56,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(1));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal($"http://httpbin.org/get", _variableProvider.Resolve("{{sevenGet2.response.body.$.url}}"));
         }
 
@@ -65,7 +65,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(2));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal($"http://httpbin.org/get", _variableProvider.Resolve("{{sevenGet3.response.body.$.url}}"));
         }
 
@@ -74,7 +74,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(3));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal($"http://httpbin.org/get", _variableProvider.Resolve("{{sevenGet4.response.body.$.url}}"));
         }
 
@@ -83,7 +83,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(4));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal($"http://httpbin.org/get", _variableProvider.Resolve("{{sevenGet5.response.body.$.url}}"));
         }
 

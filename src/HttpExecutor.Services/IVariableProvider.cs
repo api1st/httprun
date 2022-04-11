@@ -8,7 +8,7 @@ namespace HttpExecutor.Services
 
         void ResetLookupWarnings();
 
-        string Register(string name, string value);
+        string? Register(string name, string value);
 
         string Resolve(string content);
 

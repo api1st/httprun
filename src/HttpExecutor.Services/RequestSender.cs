@@ -71,10 +71,11 @@ namespace HttpExecutor.Services
                 return (request, new FailedHttpResponse { Body = "Following of HTTP Redirect failed, possibly due to https->http redirection." });
             }
 
-            var httpResponse = new HttpResponse();
-
-            httpResponse.StatusCode = (int)httpResponseMessage.StatusCode;
-            httpResponse.StatusPhrase = httpResponseMessage.ReasonPhrase;
+            var httpResponse = new HttpResponse
+            {
+                StatusCode = (int)httpResponseMessage.StatusCode,
+                StatusPhrase = httpResponseMessage.ReasonPhrase
+            };
 
             foreach (var responseHeader in httpResponseMessage.Headers)
             {

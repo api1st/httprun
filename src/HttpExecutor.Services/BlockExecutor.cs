@@ -30,7 +30,7 @@ namespace HttpExecutor.Services
             _appOptions = appOptions ?? throw new ArgumentNullException(nameof(appOptions));
         }
 
-        public async Task<(IEnumerable<Warning>, IHttpRequest, IHttpResponse)> ExecuteAsync(ExecutionBlock block)
+        public async Task<(IEnumerable<Warning>, IHttpRequest?, IHttpResponse?)> ExecuteAsync(ExecutionBlock block)
         {
             var hasRequest = false;
 
@@ -95,23 +95,20 @@ namespace HttpExecutor.Services
             return (warnings, null, null);
         }
 
-        private ICollection<IBlockLine> SquashMultiLineVerbs(ICollection<IBlockLine> lines)
+        private static ICollection<IBlockLine> SquashMultiLineVerbs(ICollection<IBlockLine> lines)
         {
             var multiLines = lines.Where(x => x.LineType == LineType.RequestVerbMultiLine);
 
             var output = new List<IBlockLine>();
 
             var concatinatedLine = "";
-
-            if (multiLines.Any())
+            
+            foreach (var line in multiLines)
             {
-                foreach (var line in multiLines)
-                {
-                    concatinatedLine += line.Raw;
-                }
+                concatinatedLine += line.Raw;
             }
-
-            IBlockLine previous = null;
+            
+            IBlockLine? previous = null;
 
             var createdVerbLine = false;
 
