@@ -35,7 +35,7 @@ namespace HttpExecutor.Services
 
                 return string.Concat(result);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Don't let issues with pretty print prevent execution
                 return json;

@@ -1,4 +1,6 @@
-﻿namespace HttpExecutor.Abstractions
+﻿using HttpExecutor.Abstractions;
+
+namespace HttpExecutor.Services
 {
     public class HttpHeader : IHttpHeader
     {
