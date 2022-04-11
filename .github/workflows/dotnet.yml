@@ -23,6 +23,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Find scripts
       run: |
-        ls -la   
+        ls -la ./test/HttpExecutor.Tests.Integration/Scripts
+    - name: Find scripts
+      run: |
+        ls -la ./test/HttpExecutor.Tests.Integration/bin/Debug/net5.0/Scripts
     - name: Test
       run: dotnet test --no-build --verbosity normal
