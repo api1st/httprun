@@ -30,7 +30,7 @@ jobs:
       run: dotnet publish -c Release -r linux-x64 --self-contained true -o ./rel-linux ./src/HttpExecutor/HttpExecutor.csproj
     - name: Zip linux version
       run: |
-        zip -r httprun-${{ steps.date.outputs.date }}-linux.gz  --junk-paths rel-linux/*
+        tar -zcvf httprun-${{ steps.date.outputs.date }}-linux.tar.gz rel-linux/
     - name: Publish Windows version
       run: dotnet publish -c Release -r win-x64 --self-contained true -o ./rel-win ./src/HttpExecutor/HttpExecutor.csproj
     - name: Zip Windows version
@@ -43,7 +43,7 @@ jobs:
         draft: false
         prerelease: false
         release_name: ${{ steps.date.outputs.date }}
-        tag_name: ${{ github.ref }}-${{ steps.date.outputs.date }}
+        tag_name: ${{ github.ref }}
         body: Release of httprun
       env:
         GITHUB_TOKEN: ${{ github.token }}  
@@ -53,8 +53,8 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: httprun-${{ steps.date.outputs.date }}-linux.gz
-        asset_name: httprun-${{ steps.date.outputs.date }}-linux.gz
+        asset_path: httprun-${{ steps.date.outputs.date }}-linux.tar.gz
+        asset_name: httprun-${{ steps.date.outputs.date }}-linux.tar.gz
         asset_content_type: application/gzip 
     - name: upload Windows artifact
       uses: actions/upload-release-asset@v1
@@ -64,4 +64,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: httprun-${{ steps.date.outputs.date }}-win64.zip
         asset_name: httprun-${{ steps.date.outputs.date }}-win64.zip
-        asset_content_type: application/gzip         
+        asset_content_type: application/zip         
