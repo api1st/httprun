@@ -1,8 +1,6 @@
 name: .NET
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -43,7 +41,7 @@ jobs:
         draft: false
         prerelease: false
         release_name: ${{ steps.date.outputs.date }}
-        tag_name: ${{ github.ref }}
+        tag_name: ver-${{ github.sha }}
         body: Release of httprun
       env:
         GITHUB_TOKEN: ${{ github.token }}  
