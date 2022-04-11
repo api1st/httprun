@@ -5,7 +5,7 @@
 ## Example
 
 <p align="center">
-  <img width="600" src="https://github.com/api1st/httprun/raw/docs/http1.svg">
+  <img width="600" src="https://raw.githubusercontent.com/api1st/httprun/main/docs/http1.svg">
 </p>
 
 ## Background
