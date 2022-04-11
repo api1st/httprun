@@ -52,7 +52,7 @@ namespace HttpExecutor.Services
                 client.Timeout = TimeSpan.FromMilliseconds(_options.RequestTimeout);
                 httpResponseMessage = await client.SendAsync(httpRequestMessage);
             }
-            catch (TaskCanceledException timeout)
+            catch (TaskCanceledException)
             {
                 return (request, new FailedHttpResponse { Body = "HTTP Request timeout." });
             }
