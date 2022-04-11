@@ -1,9 +1,13 @@
-name: .NET
+name: Release
 
 on:
   pull_request:
-    branches: [ main ]
-
+    branches:
+      - main
+    branches-ignore:
+      - develop
+      - 'feature/**'
+      
 jobs:
   build:
 
