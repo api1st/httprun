@@ -33,7 +33,7 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("3-POSTs.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/3-POSTs.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
@@ -100,7 +100,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
 
             // When no suitable file is found, it uses the text as normal body content.
-            Assert.Equal("< invalid.txt", _variableProvider.Resolve("{{postFileContentMissing6.response.body.$.data}}").Trim());
+            Assert.Equal("< Scripts/invalid.txt", _variableProvider.Resolve("{{postFileContentMissing6.response.body.$.data}}").Trim());
         }
 
         [Fact]

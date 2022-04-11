@@ -58,7 +58,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="api.yaml"
 Content-Type: application/octet-stream
 
-< ./TextFile.txt
+< Scripts/TextFile.txt
 --{{boundary}}--
 
 ###
@@ -79,12 +79,12 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File1.txt"
 Content-Type: application/octet-stream
 
-< TextFile.txt
+< Scripts/TextFile.txt
 --{{boundary}}
 Content-Disposition: form-data; name="file2"; filename="File2.txt"
 Content-Type: application/octet-stream
 
-< TextFile.txt
+< Scripts/TextFile.txt
 --{{boundary}}--
 
 ###
@@ -105,12 +105,12 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File1.txt"
 Content-Type: application/octet-stream
 
-< TextFile.txt
+< Scripts/TextFile.txt
 --{{boundary}}
 Content-Disposition: form-data; name="file2"; filename="File2.png"
 Content-Type: application/octet-stream
 
-< partly_cloudy.png
+< Scripts/partly_cloudy.png
 --{{boundary}}--
 
 ###
@@ -135,7 +135,7 @@ Hello, this is the message
 Content-Disposition: form-data; name="file"; filename="File2.png"
 Content-Type: application/octet-stream
 
-< partly_cloudy.png
+< Scripts/partly_cloudy.png
 --{{boundary}}--
 
 ###
@@ -156,7 +156,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File2.png"
 Content-Type: application/octet-stream
 
-< partly_cloudy.png
+< Scripts/partly_cloudy.png
 --{{boundary}}
 Content-Disposition: form-data; name="message"
 
@@ -181,7 +181,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.png"
 Content-Type: application/octet-stream
 
-< partly_cloudy.png
+< Scripts/partly_cloudy.png
 --{{boundary}}
 Content-Disposition: form-data; name="message"
 
@@ -190,7 +190,7 @@ Hello, this is the message
 Content-Disposition: form-data; name="file2"; filename="File2.txt"
 Content-Type: application/octet-stream
 
-< TextFile.txt
+< Scripts/TextFile.txt
 --{{boundary}}--
 
 ###
@@ -259,7 +259,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-< {{filename}}.txt
+< Scripts/{{filename}}.txt
 --{{boundary}}--
 
 ###
@@ -282,7 +282,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-< ./{{path}}/{{filename}}.txt
+< Scripts/{{path}}/{{filename}}.txt
 --{{boundary}}--
 
 ###
@@ -304,7 +304,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-<@ TextFileWithVariables.txt
+<@ Scripts/TextFileWithVariables.txt
 --{{boundary}}--
 
 ###
@@ -326,7 +326,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-< TextFileWithVariables.txt
+< Scripts/TextFileWithVariables.txt
 --{{boundary}}--
 
 ###
@@ -348,7 +348,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-<@ {{filename}}.txt
+<@ Scripts/{{filename}}.txt
 --{{boundary}}--
 
 ###
@@ -371,7 +371,7 @@ Content-Type: multipart/form-data; boundary={{boundary}}
 Content-Disposition: form-data; name="file"; filename="File.txt"
 Content-Type: application/octet-stream
 
-<@ {{filename}}.txt
+<@ Scripts/{{filename}}.txt
 --{{boundary}}--
 
 ###

@@ -29,7 +29,7 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("4-QueryStrings.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/4-QueryStrings.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
