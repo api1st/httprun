@@ -2,6 +2,12 @@
 
 `httprun` allows execution of .http scripts, in batches, from the command line.
 
+## Example
+
+<p align="center">
+  <img width="600" src="https://github.com/api1st/httprun/raw/docs/http1.svg">
+</p>
+
 ## Background
 
 At [Apiway](https://www.apiway.net) we make platforms that help organisations publish APIs, we do a lot of demos, which utilise a lot of HTTP API calls. We were using the [Visual Studio Code Rest-client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to drive the demos, but the setup, which could involve hundreds of HTTP requests, were tedious to click through.
