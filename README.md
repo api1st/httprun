@@ -24,8 +24,8 @@ The Visual Studio Code Rest-Client has become the defacto way of building and ex
 
 | OS | Download |
 | -- | -------- |
-| Windows | [httprun.exe](releases/) |
-| Unix | [httprun](releases/) |
+| Windows | [httprun.exe](https://github.com/api1st/httprun/releases) |
+| Unix | [httprun](https://github.com/api1st/httprun/releases) |
 
 or 
 
