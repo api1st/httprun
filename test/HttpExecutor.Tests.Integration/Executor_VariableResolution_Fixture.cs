@@ -103,7 +103,7 @@ namespace HttpExecutor.Tests.Integration
             // Execute test
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(6));
 
-            Assert.Equal(1, result.Item1.Count());
+            Assert.Single(result.Item1);
         }
 
         [Fact]

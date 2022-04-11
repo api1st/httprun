@@ -19,7 +19,7 @@ namespace HttpExecutor.Tests.Integration
         
         public Executor_File_Missing_Fixture(ITestOutputHelper outputHelper)
         {
-            _appOptions = new AppOptions {RequestTimeout = 30000};
+            _appOptions = new AppOptions {RequestTimeout = 30000, TerminateOnFileAccessFailure = true};
 
             var services = new ServiceCollection();
             services.AddSingleton(outputHelper);
@@ -46,7 +46,7 @@ namespace HttpExecutor.Tests.Integration
         [Fact]
         public async void Execute_Request_Multipart_single_file()
         {
-            Assert.ThrowsAsync<Exception>(async () => await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0)));
+            await Assert.ThrowsAsync<Exception>(async () => await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0)));
         }
     }
 }

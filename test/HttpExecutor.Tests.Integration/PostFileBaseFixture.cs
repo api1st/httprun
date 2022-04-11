@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 
 namespace HttpExecutor.Tests.Integration
 {
@@ -8,7 +7,10 @@ namespace HttpExecutor.Tests.Integration
         public PostFileBaseFixture()
         {
             var scriptDirectory = System.IO.Directory.GetParent("./Scripts/1-GETs.http");
-            System.IO.Directory.SetCurrentDirectory(scriptDirectory.FullName);
+            if (scriptDirectory != null)
+            {
+                System.IO.Directory.SetCurrentDirectory(scriptDirectory.FullName);
+            }
         }
 
         public void Dispose()
