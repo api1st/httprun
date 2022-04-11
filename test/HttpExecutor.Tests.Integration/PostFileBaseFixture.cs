@@ -14,7 +14,7 @@ namespace HttpExecutor.Tests.Integration
                 {
                     if (scriptDirectory.Parent != null)
                     {
-                        System.IO.Directory.SetCurrentDirectory(scriptDirectory.Parent.FullName);
+                        System.IO.Directory.SetCurrentDirectory(scriptDirectory.Parent.FullName + "/Scripts");
                     }
                 }
                 else
