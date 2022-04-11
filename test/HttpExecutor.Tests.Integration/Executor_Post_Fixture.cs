@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HttpExecutor.Abstractions;
 using HttpExecutor.Ioc;
 using HttpExecutor.Services;
@@ -119,7 +120,11 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content Hello it has been replaced", json.SelectToken("$.data").Value<string>());
+            if (json == null)
+            {
+                throw new NullReferenceException("result was not json.");
+            }
+            Assert.Equal("This is a text file with some content Hello it has been replaced", json.SelectToken("$.data")?.Value<string>());
         }
 
         [Fact]
@@ -131,7 +136,11 @@ namespace HttpExecutor.Tests.Integration
 
             // Can't use the variable resolver here or it will do replacements on the returned payload too.
             var responseBody = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content {{myLocalVariable}}", responseBody.GetValue("data").Value<string>());
+            if (responseBody == null)
+            {
+                throw new NullReferenceException("result was not json.");
+            }
+            Assert.Equal("This is a text file with some content {{myLocalVariable}}", responseBody.GetValue("data")?.Value<string>());
         }
 
         [Fact]
@@ -142,7 +151,11 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content {{invalidVariable}}", json.SelectToken("$.data").Value<string>());
+            if (json == null)
+            {
+                throw new NullReferenceException("result was not json.");
+            }
+            Assert.Equal("This is a text file with some content {{invalidVariable}}", json.SelectToken("$.data")?.Value<string>());
         }
         
         [Fact]

@@ -131,7 +131,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message").Value<string>());
+            Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message")?.Value<string>());
         }
 
         [Fact]
@@ -142,8 +142,8 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message").Value<string>());
-            Assert.Equal("Hello, this is This is the other variable value the message", json.SelectToken("$.form.message2").Value<string>());
+            Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message")?.Value<string>());
+            Assert.Equal("Hello, this is This is the other variable value the message", json.SelectToken("$.form.message2")?.Value<string>());
         }
 
         [Fact]
@@ -154,7 +154,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content", json.SelectToken("$.files.file").Value<string>());
+            Assert.Equal("This is a text file with some content", json.SelectToken("$.files.file")?.Value<string>());
         }
 
         [Fact]
@@ -183,7 +183,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file").Value<string>());
+            Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file")?.Value<string>());
         }
 
         [Fact]
@@ -194,7 +194,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file").Value<string>());
+            Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file")?.Value<string>());
         }
 
         [Fact]
@@ -205,7 +205,7 @@ namespace HttpExecutor.Tests.Integration
             Assert.Equal(200, result.Item3.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
-            Assert.Equal("This is a text file with some content Successfully replaced value.", json.SelectToken("$.files.file").Value<string>());
+            Assert.Equal("This is a text file with some content Successfully replaced value.", json.SelectToken("$.files.file")?.Value<string>());
         }
     }
 }

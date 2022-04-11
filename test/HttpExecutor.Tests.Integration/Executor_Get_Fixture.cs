@@ -128,7 +128,7 @@ namespace HttpExecutor.Tests.Integration
 
         // [Fact] Bug at httpbin.org means redirects don't work properly at the moment.
         // httpbingo won't redirect outside of its own domain..
-        public async void Execute_302_follow_redirect_https_to_http()
+        private async void Execute_302_follow_redirect_https_to_http()
         {
             _appOptions.Setup(x => x.Follow300Responses).Returns(true);
 
