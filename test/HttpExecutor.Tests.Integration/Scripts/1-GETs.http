@@ -1,0 +1,168 @@
+﻿# Block 0
+# Names a request
+
+# @name oneGet1
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 1
+# References previous request in query string
+
+# @name oneGet2
+
+GET /get?id={{oneGet1.response.headers.content-length}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 2
+# References an invalid request
+
+# @name oneGet3
+
+GET /get?id={{oneGetInvalid.response.headers.content-length}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 3
+# Variable only block 
+
+@url = {{oneGet1.response.body.$.url}}
+@myname = Ash
+
+###
+
+# Block 4
+# Variable in Headers
+
+# @name oneGet4
+
+GET /get HTTP/1.1
+Host: httpbin.org
+X-Executor-test: {{oneGet1.request.headers.accept}}
+
+###
+
+# Block 5
+# Variable in Header Name 
+
+# @name oneGet5
+
+GET /get HTTP/1.1
+Host: httpbin.org
+X-{{myname}}: Has a value
+
+###
+
+# Block 6
+# Full url in path
+
+# @name oneGet6
+
+GET http://httpbin.org/get HTTP/1.1
+
+###
+
+# Block 7
+# Full url in path with port
+
+# @name oneGet7 
+
+GET http://httpbin.org:80/get HTTP/1.1
+
+###
+
+# Block 8
+# 302 Redirect
+
+# @name oneGet8
+
+GET /redirect-to?url=https%3A%2F%2Fhttpbingo.org%2Fget HTTP/1.1
+Host: httpbingo.org
+
+###
+
+# Block 9
+# 302 Redirect, https -> http
+
+# @name oneGet9
+
+GET /redirect-to?url=http%3A%2F%2Fhttpbin.org%2Fget HTTP/1.1
+Host: httpbingo.org
+
+###
+
+# Block 10
+# short timeout, uses redirects so must auto follow
+
+# @name oneGet10
+
+GET /delay/5 HTTP/1.1
+Host: httpbingo.org
+
+###
+
+# Block 11 
+# Has an @ in the path
+
+# @name oneGet11
+
+GET /anything/me@you.com HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 12
+# Has an : in the path
+
+# @name oneGet12
+
+GET /anything/me:you HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 13
+# Path is variable 
+
+@myVariable = /anything/hello
+
+# @name oneGet13
+
+GET {{myVariable}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 14
+# Full url in path https
+
+# @name oneGetHttps14
+
+GET https://httpbingo.org/get HTTP/1.1
+
+###
+
+# Block 15
+# User-Agent header added as not specified.
+
+# @name oneGetUserAgent15
+
+GET http://httpbin.org/get HTTP/1.1
+
+###
+
+# Block 16
+# User-Agent header sent as specified
+
+# @name oneGetUserAgent16
+
+GET http://httpbin.org/get HTTP/1.1
+User-Agent: my-custom-agent
+
+###

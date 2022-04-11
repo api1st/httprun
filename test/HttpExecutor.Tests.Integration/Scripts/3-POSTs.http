@@ -1,0 +1,203 @@
+﻿# Block 0
+# Post No body
+
+# @name postNoBody1
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: application/json
+
+###
+
+# Block 1
+# Post, plain text body
+
+# @name postPlainText2
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+Hello, this is the body.
+
+###
+
+# Block 2
+# Post, no content type specified
+
+# @name postNoContentType3
+
+POST /post HTTP/1.1
+Host: httpbin.org
+
+Hello, this is the body.
+
+###
+
+# Block 3
+# File Content - Text File local directory
+
+# @name postFileContentText4
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+< TextFile.txt
+
+###
+
+# Block 4
+# File Content - Binary local directory
+
+# @name postFileContentBinary5
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: image/png
+
+< partly_cloudy.png
+
+###
+
+# Block 5
+# File content, missing file
+
+# @name postFileContentMissing6
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+< invalid.txt
+
+###
+
+# Block 6
+# File Content - Text File nested relative directory
+
+# @name postFileContentText7
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+< ./Child/TextFile.txt
+
+###
+
+# Block 7
+# File Content - Text File local directory resolvable variables
+
+@myLocalVariable = Hello it has been replaced
+
+# @name postFileContentText8
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+<@ TextFileWithVariables.txt
+
+### 
+
+# Block 8
+# File Content - Text File local directory resolvable variables but resolving not requested
+
+@myLocalVariable = Hello it has been replaced
+
+# @name postFileContentText9
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+< TextFileWithVariables.txt
+
+### 
+
+# Block 9
+# File Content - Text File local directory invalid variables
+
+@myLocalVariable = Hello it has been replaced
+
+# @name postFileContentText10
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+<@ TextFileWithInvalidVariables.txt
+
+### 
+
+# Block 10
+# Media type has lots of spaces after it
+
+# @name postText11
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: application/json-patch+json               
+
+{
+	"one": 1,
+	"two": true,
+	"three": "string"
+}
+
+###
+
+# Block 11
+# Form Multipart Post with variables with spaces
+
+@userId = abc123def
+@userSecret = This is a password that contains spaces!
+
+# @name postForm12
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: application/x-www-form-urlencoded
+
+username={{userId}}&password={{userSecret}}&grant_type=password
+
+###
+
+# Block 12
+# Post to HTTPS endpoint
+
+@userId = abc123def@me.com
+@userSecret = This is a password that contains spaces!
+
+# @name postForm13
+
+POST /oauth/token HTTP/1.1
+Host: login.apigee.com:443
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json;charset=utf-8
+Authorization: Basic ZWRnZWNsaTplZGdlY2xpc2VjcmV0
+
+username={{userId}}&password={{userSecret}}&grant_type=password
+
+###
+
+# Block 13
+# Post to HTTPS endpoint with Variables for port and host
+
+@userId = abc123def@me.com
+@userSecret = This is a password that contains spaces!
+@host = login.apigee.com
+@hostPort = 443
+
+# @name postForm14
+
+POST /oauth/token HTTP/1.1
+Host: {{host}}:{{hostPort}}
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json;charset=utf-8
+Authorization: Basic ZWRnZWNsaTplZGdlY2xpc2VjcmV0
+
+username={{userId}}&password={{userSecret}}&grant_type=password
+
+###

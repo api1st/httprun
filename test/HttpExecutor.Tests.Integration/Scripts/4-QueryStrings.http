@@ -1,0 +1,99 @@
+﻿# Block 0
+# Querystring split over lines
+
+# @name fourQuery1
+
+GET /get
+    ?one=yes HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 1
+# Querystring split over lines
+
+# @name fourQuery2
+
+GET /get
+    ?one=yes
+    &two=no HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 2
+# Querystring split over lines
+
+# @name fourQuery3
+
+GET /get?one=yes
+    &two=no HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 3
+# Querystring split over lines
+
+# @name fourQuery4
+
+GET /get?one=yes
+    &two=no
+    &three=16     HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 4
+# Querystring split over lines
+
+# @name fourQuery5
+
+GET /get?one=yes&two=no
+    &three=16     HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 5
+# Querystring split over lines (weird spacing)
+
+# @name fourQuery6
+
+GET /get?one=yes  
+&two=no  
+  &three=16   HTTP/1.1  
+Host: httpbin.org
+
+###
+
+# Block 6
+# Post, plain text body
+
+# @name fourQuery7
+
+POST /post
+?one=1&two=hello
+  &three=16  HTTP/1.1
+Host: httpbin.org
+Content-Type: text/plain
+
+Hello, this is the body.
+
+###
+
+# Block 7
+# Querystring split over lines with variables
+
+# @name fourQuery8
+
+@yesVariable = Yes
+@numberVariable = 16
+
+GET /get?one={{yesVariable}}  
+&two=no  
+  &three={{numberVariable}}   HTTP/1.1  
+Host: httpbin.org
+
+###

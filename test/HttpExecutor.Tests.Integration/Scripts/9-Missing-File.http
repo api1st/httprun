@@ -1,0 +1,20 @@
+﻿# Block 0
+# Form Multipart single file missing or not readable
+
+# @name nineForm1
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="api.yaml"
+Content-Type: application/octet-stream
+
+< ./doesnt-exist.txt
+--{{boundary}}--
+
+###

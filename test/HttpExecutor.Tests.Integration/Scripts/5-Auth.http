@@ -1,0 +1,46 @@
+﻿# Block 0
+# Basic Auth user:pass
+
+# @name fiveAuth1
+
+GET /basic-auth/user/passwd HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Authorization: Basic user:passwd
+
+###
+
+# Block 1
+# Basic Auth base64 encoded
+
+# @name fiveAuth2
+
+GET /basic-auth/user/passwd HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Authorization: Basic dXNlcjpwYXNzd2Q=
+
+###
+
+# Block 2
+# Basic Auth base64 encoded
+
+# @name fiveAuth3
+
+GET /basic-auth/user/passwd HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Authorization: Basic user passwd
+
+###
+
+# Block 3
+# Basic Auth no creds
+
+# @name fiveAuth4
+
+GET /basic-auth/user/passwd HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###

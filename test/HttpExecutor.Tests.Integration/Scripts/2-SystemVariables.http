@@ -1,0 +1,123 @@
+﻿# Block 0
+# Guid System Variable
+
+@myGuid = {{$guid}}
+
+###
+
+# Block 1
+# Random Int
+
+@myRandomInt1 = {{$randomInt 0 1}}
+@myRandomInt2 = {{$randomInt 5 10}}
+@myRandomInt3 = {{$randomInt 4 4}}
+
+###
+
+# Block 2
+# TimeStamp
+
+@myTimeStamp1 = {{$timestamp}}
+@myTimeStamp2 = {{$timestamp 1000 ms}}
+@myTimeStamp3 = {{$timestamp 1000 s}}
+@myTimeStamp4 = {{$timestamp -1000 m}}
+@myTimeStamp5 = {{$timestamp -5 h}}
+@myTimeStamp6 = {{$timestamp 4 d}}
+@myTimeStamp7 = {{$timestamp -1 w}}
+@myTimeStamp8 = {{$timestamp 2 M}}
+@myTimeStamp9 = {{$timestamp -2 y}}
+
+
+###
+
+# Block 3
+# DateTime
+
+@myDateTime1 = {{$datetime rfc1123}}
+@myDateTime2 = {{$datetime iso8601}}
+@myDateTime3 = {{$datetime "DD-MM-yyyy"}}
+@myDateTime4 = {{$datetime 'yyyy-MM-DD'}}
+@myDateTime5 = {{$datetime rfc1123 1050 ms}}
+@myDateTime6 = {{$datetime rfc1123 1500 s}}
+@myDateTime7 = {{$datetime rfc1123 -500 m}}
+@myDateTime8 = {{$datetime rfc1123 -3 h}}
+@myDateTime9 = {{$datetime rfc1123 -3 d}}
+@myDateTime10 = {{$datetime rfc1123 2 w}}
+@myDateTime11 = {{$datetime rfc1123 -1 M}}
+@myDateTime12 = {{$datetime rfc1123 3 y}}
+@myDateTime13 = {{$datetime iso8601 1050 ms}}
+@myDateTime14 = {{$datetime iso8601 1500 s}}
+@myDateTime15 = {{$datetime iso8601 -500 m}}
+@myDateTime16 = {{$datetime iso8601 -3 h}}
+@myDateTime17 = {{$datetime iso8601 -3 d}}
+@myDateTime18 = {{$datetime iso8601 2 w}}
+@myDateTime19 = {{$datetime iso8601 -1 M}}
+@myDateTime20 = {{$datetime iso8601 3 y}}
+@myDateTime21 = {{$datetime "DD-MM-yyyy hhmmss" 1050 ms}}
+@myDateTime22 = {{$datetime "DD-MM-yyyy hhmmss" 1500 s}}
+@myDateTime23 = {{$datetime "DD-MM-yyyy hhmmss" -500 m}}
+@myDateTime24 = {{$datetime "DD-MM-yyyy hhmmss" -3 h}}
+@myDateTime25 = {{$datetime "DD-MM-yyyy hhmmss" -3 d}}
+@myDateTime26 = {{$datetime "DD-MM-yyyy hhmmss" 2 w}}
+@myDateTime27 = {{$datetime "DD-MM-yyyy hhmmss" -1 M}}
+@myDateTime28 = {{$datetime "DD-MM-yyyy hhmmss" 3 y}}
+@myDateTime29 = {{$datetime 'yyyy-MM-DD hhmmss' 1050 ms}}
+@myDateTime30 = {{$datetime 'yyyy-MM-DD hhmmss' 1500 s}}
+@myDateTime31 = {{$datetime 'yyyy-MM-DD hhmmss' -500 m}}
+@myDateTime32 = {{$datetime 'yyyy-MM-DD hhmmss' -3 h}}
+@myDateTime33 = {{$datetime 'yyyy-MM-DD hhmmss' -3 d}}
+@myDateTime34 = {{$datetime 'yyyy-MM-DD hhmmss' 2 w}}
+@myDateTime35 = {{$datetime 'yyyy-MM-DD hhmmss' -1 M}}
+@myDateTime36 = {{$datetime 'yyyy-MM-DD hhmmss' 3 y}}
+@myDateTime37 = {{$datetime "yyyy-MM-ddThh:mm:ss.0000Z"}}
+
+###
+
+# Block 4
+# Local DateTime
+
+@myLocalDateTime1 = {{$localDatetime rfc1123}}
+@myLocalDateTime2 = {{$localDatetime iso8601}}
+@myLocalDateTime3 = {{$localDatetime "DD-MM-yyyy"}}
+@myLocalDateTime4 = {{$localDatetime 'yyyy-MM-DD'}}
+@myLocalDateTime5 = {{$localDatetime rfc1123 1050 ms}}
+@myLocalDateTime6 = {{$localDatetime rfc1123 1500 s}}
+@myLocalDateTime7 = {{$localDatetime rfc1123 -500 m}}
+@myLocalDateTime8 = {{$localDatetime rfc1123 -3 h}}
+@myLocalDateTime9 = {{$localDatetime rfc1123 -3 d}}
+@myLocalDateTime10 = {{$localDatetime rfc1123 2 w}}
+@myLocalDateTime11 = {{$localDatetime rfc1123 -1 M}}
+@myLocalDateTime12 = {{$localDatetime rfc1123 3 y}}
+@myLocalDateTime13 = {{$localDatetime iso8601 1050 ms}}
+@myLocalDateTime14 = {{$localDatetime iso8601 1500 s}}
+@myLocalDateTime15 = {{$localDatetime iso8601 -500 m}}
+@myLocalDateTime16 = {{$localDatetime iso8601 -3 h}}
+@myLocalDateTime17 = {{$localDatetime iso8601 -3 d}}
+@myLocalDateTime18 = {{$localDatetime iso8601 2 w}}
+@myLocalDateTime19 = {{$localDatetime iso8601 -1 M}}
+@myLocalDateTime20 = {{$localDatetime iso8601 3 y}}
+@myLocalDateTime21 = {{$localDatetime "DD-MM-yyyy hhmmss" 1050 ms}}
+@myLocalDateTime22 = {{$localDatetime "DD-MM-yyyy hhmmss" 1500 s}}
+@myLocalDateTime23 = {{$localDatetime "DD-MM-yyyy hhmmss" -500 m}}
+@myLocalDateTime24 = {{$localDatetime "DD-MM-yyyy hhmmss" -3 h}}
+@myLocalDateTime25 = {{$localDatetime "DD-MM-yyyy hhmmss" -3 d}}
+@myLocalDateTime26 = {{$localDatetime "DD-MM-yyyy hhmmss" 2 w}}
+@myLocalDateTime27 = {{$localDatetime "DD-MM-yyyy hhmmss" -1 M}}
+@myLocalDateTime28 = {{$localDatetime "DD-MM-yyyy hhmmss" 3 y}}
+@myLocalDateTime29 = {{$localDatetime 'yyyy-MM-DD hhmmss' 1050 ms}}
+@myLocalDateTime30 = {{$localDatetime 'yyyy-MM-DD hhmmss' 1500 s}}
+@myLocalDateTime31 = {{$localDatetime 'yyyy-MM-DD hhmmss' -500 m}}
+@myLocalDateTime32 = {{$localDatetime 'yyyy-MM-DD hhmmss' -3 h}}
+@myLocalDateTime33 = {{$localDatetime 'yyyy-MM-DD hhmmss' -3 d}}
+@myLocalDateTime34 = {{$localDatetime 'yyyy-MM-DD hhmmss' 2 w}}
+@myLocalDateTime35 = {{$localDatetime 'yyyy-MM-DD hhmmss' -1 M}}
+@myLocalDateTime36 = {{$localDatetime 'yyyy-MM-DD hhmmss' 3 y}}
+
+###
+
+# Block 5
+# Environment Variables
+
+@myEnvVariable1 = {{$processEnv USERNAME}}
+
+###

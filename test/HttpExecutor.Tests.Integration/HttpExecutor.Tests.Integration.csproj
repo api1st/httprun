@@ -1,0 +1,92 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\1-GETs.http" />
+    <None Remove="Scripts\2-SystemVariables.http" />
+    <None Remove="Scripts\3-POSTs.http" />
+    <None Remove="Scripts\4-QueryStrings.http" />
+    <None Remove="Scripts\5-Auth.http" />
+    <None Remove="Scripts\6-FormMultipart.http" />
+    <None Remove="Scripts\7-NamedRequests.http" />
+    <None Remove="Scripts\8-VariableResolution.http" />
+    <None Remove="Scripts\9-Missing-File.http" />
+    <None Remove="Scripts\Child\TextFile.txt" />
+    <None Remove="Scripts\partly_cloudy.png" />
+    <None Remove="Scripts\TextFile.txt" />
+    <None Remove="Scripts\TextFileWithInvalidVariables.txt" />
+    <None Remove="Scripts\TextFileWithVariables.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Scripts\7-NamedRequests.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\6-FormMultipart.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\5-Auth.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\4-QueryStrings.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\1-GETs.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\2-SystemVariables.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\3-POSTs.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\8-VariableResolution.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	  <Content Include="Scripts\9-Missing-File.http">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+
+	  <Content Include="Scripts\Child\TextFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\partly_cloudy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\TextFileWithInvalidVariables.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\TextFileWithVariables.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\TextFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.14.5" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\HttpExecutor.Ioc\HttpExecutor.Ioc.csproj" />
+    <ProjectReference Include="..\..\src\HttpExecutor\HttpExecutor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Executor_Post_Fixture.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+</Project>

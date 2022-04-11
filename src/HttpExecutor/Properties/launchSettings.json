@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HttpExecutor": {
+      "commandName": "Project",
+      "commandLineArgs": "F:\\Code\\Code\\apiway\\rest-client-executor\\scratch.http -c -s  200 201 -v true"
+    }
+  }
+}

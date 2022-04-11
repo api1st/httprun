@@ -1,0 +1,63 @@
+﻿# Block 0
+# Names a request correctly
+
+# @name sevenGet1
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 1
+# Names a request correctly trailing spaces
+
+# @name sevenGet2 
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 2
+# Names a request correctly intermediate spaces
+
+# @name  sevenGet3
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 3
+# Names a request correctly tabs no spaces
+
+# @name	sevenGet4
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 4
+# Names a request correctly trailing tab
+# @name sevenGet5	
+
+GET /get HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###
+
+# Block 5
+# Names duplicated name
+# @name sevenGet5	
+
+GET /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+
+###

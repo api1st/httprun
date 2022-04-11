@@ -1,0 +1,377 @@
+﻿# Block 0
+# Form Multipart single value
+
+# @name sixForm1
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is the message
+--{{boundary}}--
+
+###
+
+# Block 1
+# Form Multipart multi value
+
+# @name sixForm2
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is the message
+--{{boundary}}
+Content-Disposition: form-data; name="message2"
+
+This is the second message part
+--{{boundary}}--
+
+###
+
+# Block 2
+# Form Multipart single file
+
+# @name sixForm3
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="api.yaml"
+Content-Type: application/octet-stream
+
+< ./TextFile.txt
+--{{boundary}}--
+
+###
+
+# Block 3
+# Form Multipart multi file (Same File)
+
+# @name sixForm4
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File1.txt"
+Content-Type: application/octet-stream
+
+< TextFile.txt
+--{{boundary}}
+Content-Disposition: form-data; name="file2"; filename="File2.txt"
+Content-Type: application/octet-stream
+
+< TextFile.txt
+--{{boundary}}--
+
+###
+
+# Block 4
+# Form Multipart multi file (Different File)
+
+# @name sixForm5
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File1.txt"
+Content-Type: application/octet-stream
+
+< TextFile.txt
+--{{boundary}}
+Content-Disposition: form-data; name="file2"; filename="File2.png"
+Content-Type: application/octet-stream
+
+< partly_cloudy.png
+--{{boundary}}--
+
+###
+
+# Block 5
+# Form Multipart Value then File
+
+# @name sixForm6
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is the message
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File2.png"
+Content-Type: application/octet-stream
+
+< partly_cloudy.png
+--{{boundary}}--
+
+###
+
+# Block 6
+# Form Multipart File then Value
+
+# @name sixForm7
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File2.png"
+Content-Type: application/octet-stream
+
+< partly_cloudy.png
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is the message
+--{{boundary}}--
+
+###
+
+# Block 7
+# Form Multipart File then Value then Another File
+
+# @name sixForm8
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.png"
+Content-Type: application/octet-stream
+
+< partly_cloudy.png
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is the message
+--{{boundary}}
+Content-Disposition: form-data; name="file2"; filename="File2.txt"
+Content-Type: application/octet-stream
+
+< TextFile.txt
+--{{boundary}}--
+
+###
+
+# Block 8
+# Form Multipart Value with variables
+
+# @name sixForm9
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@message = This is the variable value.
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is {{message}} the message
+--{{boundary}}--
+
+###
+
+# Block 9
+# Form Multipart multiple Value with variables
+
+# @name sixForm10
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@message = This is the variable value.
+@message2 = This is the other variable value
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="message"
+
+Hello, this is {{message}} the message
+--{{boundary}}
+Content-Disposition: form-data; name="message2"
+
+Hello, this is {{message2}} the message
+--{{boundary}}--
+
+###
+
+# Block 10
+# Form Multipart File name containing variable
+
+# @name sixForm11
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@filename = TextFile
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+< {{filename}}.txt
+--{{boundary}}--
+
+###
+
+# Block 11
+# Form Multipart File name containing multiple variables
+
+# @name sixForm12
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@path = Child
+@filename = TextFile
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+< ./{{path}}/{{filename}}.txt
+--{{boundary}}--
+
+###
+
+# Block 12
+# Form Multipart File content with variables - resolved
+
+# @name sixForm13
+
+@myLocalVariable = Hello it has been replaced
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+<@ TextFileWithVariables.txt
+--{{boundary}}--
+
+###
+
+# Block 13
+# Form Multipart File content with variables - unresolved
+
+# @name sixForm14
+
+@myLocalVariable = Hello it has been replaced
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+< TextFileWithVariables.txt
+--{{boundary}}--
+
+###
+
+# Block 14
+# Form Multipart File name containing variable, file contains variables - resolved, but file contents variable name not matched
+
+# @name sixForm15
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@filename = TextFileWithVariables
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+<@ {{filename}}.txt
+--{{boundary}}--
+
+###
+
+# Block 15
+# Form Multipart File name containing variable, file contains variables - resolved with contents as well
+
+# @name sixForm16
+
+@boundary = {{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}{{$randomInt 100000 999999}}
+@filename = TextFileWithVariables
+@myLocalVariable = Successfully replaced value.
+
+POST /anything HTTP/1.1
+Host: httpbin.org
+Accept: application/json
+Content-Type: multipart/form-data; boundary={{boundary}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="file"; filename="File.txt"
+Content-Type: application/octet-stream
+
+<@ {{filename}}.txt
+--{{boundary}}--
+
+###

@@ -1,0 +1,89 @@
+﻿# Block 0
+# A previous request
+
+# @name dataSource
+
+GET /base64/WwogIHsKICAgICJncm91cElkIjogMSwKICAgICJkaXNwbGF5TmFtZSI6ICJHcm91cCBBcmNoaXRlY3R1cmUiLAogICAgInRlYW1zIjoge30sCiAgICAibmFtZSI6ICJBcmNoaXRlY3R1cmUiLAogICAgImlkIjogMQogIH0sCiAgewogICAgImdyb3VwSWQiOiAxLAogICAgImRpc3BsYXlOYW1lIjogIkNlbnRyYWwgQVBJIiwKICAgICJ0ZWFtcyI6IHt9LAogICAgIm5hbWUiOiAiYXBpMXN0IiwKICAgICJpZCI6IDIKICB9LAogIHsKICAgICJncm91cElkIjogMSwKICAgICJkaXNwbGF5TmFtZSI6ICJHcm91cCBTZWN1cml0eSIsCiAgICAidGVhbXMiOiB7fSwKICAgICJuYW1lIjogIkdyb3VwIFNlY3VyaXR5IiwKICAgICJpZCI6IDMKICB9LAogIHsKICAgICJncm91cElkIjogMSwKICAgICJkaXNwbGF5TmFtZSI6ICJOZXR3b3JrcyIsCiAgICAidGVhbXMiOiB7fSwKICAgICJuYW1lIjogIk5ldHdvcmtzIiwKICAgICJpZCI6IDQKICB9LAogIHsKICAgICJncm91cElkIjogMSwKICAgICJkaXNwbGF5TmFtZSI6ICJJbmZyYXN0cnVjdHVyZSBTdXBwb3J0IiwKICAgICJ0ZWFtcyI6IHt9LAogICAgIm5hbWUiOiAiSW5mcmEiLAogICAgImlkIjogNQogIH0sCiAgewogICAgImdyb3VwSWQiOiAxLAogICAgImRpc3BsYXlOYW1lIjogIkZhY2lsaXRpZXMiLAogICAgInRlYW1zIjoge30sCiAgICAibmFtZSI6ICJGYWNpbGl0aWVzIiwKICAgICJpZCI6IDYKICB9LAogIHsKICAgICJncm91cElkIjogMSwKICAgICJkaXNwbGF5TmFtZSI6ICJMZWdhbCBhbmQgQ29tcGxpYW5jZSIsCiAgICAidGVhbXMiOiB7fSwKICAgICJuYW1lIjogIkxlZ2FsIiwKICAgICJpZCI6IDcKICB9LAogIHsKICAgICJncm91cElkIjogMiwKICAgICJkaXNwbGF5TmFtZSI6ICJPcGVyYXRpb25zIiwKICAgICJ0ZWFtcyI6IHt9LAogICAgIm5hbWUiOiAiT3BlcmF0aW9ucyIsCiAgICAiaWQiOiA4CiAgfSwKICB7CiAgICAiZ3JvdXBJZCI6IDIsCiAgICAiZGlzcGxheU5hbWUiOiAiT25saW5lIENoYW5uZWxzIiwKICAgICJ0ZWFtcyI6IHt9LAogICAgIm5hbWUiOiAiT25saW5lIENoYW5uZWxzIiwKICAgICJpZCI6IDkKICB9LAogIHsKICAgICJncm91cElkIjogMiwKICAgICJkaXNwbGF5TmFtZSI6ICJSZXRhaWwgU3RvcmUgQ2hhbm5lbHMiLAogICAgInRlYW1zIjoge30sCiAgICAibmFtZSI6ICJSZXRhaWwgU2FsZXMiLAogICAgImlkIjogMTAKICB9LAogIHsKICAgICJncm91cElkIjogMywKICAgICJkaXNwbGF5TmFtZSI6ICJPcGVyYXRpb25zIiwKICAgICJ0ZWFtcyI6IHt9LAogICAgIm5hbWUiOiAiT3BlcmF0aW9ucyIsCiAgICAiaWQiOiAxMQogIH0sCiAgewogICAgImdyb3VwSWQiOiAzLAogICAgImRpc3BsYXlOYW1lIjogIkRpZ2l0YWwgQ2hhbm5lbHMiLAogICAgInRlYW1zIjoge30sCiAgICAibmFtZSI6ICJEaWdpdGFsIiwKICAgICJpZCI6IDEyCiAgfQpd HTTP/1.1
+Host: httpbingo.org
+
+###
+
+# Block 1
+# Complicated JsonPath query on previous request
+
+# @name eightVariables1
+
+@myVar1 = {{dataSource.response.body.$[?(@.name=='Architecture')].id}}
+
+GET /anything/{{myVar1}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 2
+# Complicated JsonPath query on previous request
+
+# @name eightVariables2
+
+@myVar2 = {{dataSource.response.body.$[?(@.name=='Architecture' && @.groupId==1)].id}}
+
+GET /anything/{{myVar2}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 3
+# Indexing an array element without brackets
+
+# @name eightVariables3
+
+@myvar3 = {{dataSource.response.body.$.0.id}}
+
+GET /anything/{{myvar3}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 4
+# Another datasource
+
+# @name dataSource2
+
+GET /base64/ewogICJyZXN1bHRzIjogWwogICAgewogICAgICAiZW5kcG9pbnRzIjogNCwKICAgICAgInNjaGVtYXMiOiA1LAogICAgICAicmVzcG9uc2VzIjogNSwKICAgICAgImFkZGVkRGF0ZSI6ICIyMDIxLTAyLTA5VDEwOjU1OjAxLjg3MVoiLAogICAgICAiYXBpSWQiOiAxLAogICAgICAiaWQiOiAiNjAyMjZhMDU1YzQ4NWJlNDA2MDRiZDJiIiwKICAgICAgInRpdGxlIjogImFwaXdheSBCb29rIExpYnJhcnkgRXhhbXBsZSBBUEkiLAogICAgICAidGVjaG5pY2FsbHlWYWxpZCI6IHRydWUsCiAgICAgICJtYWpvclZlcnNpb24iOiAxLAogICAgICAidmVyc2lvbiI6ICIxLjAuMCIKICAgIH0sCiAgICB7CiAgICAgICJlbmRwb2ludHMiOiA0LAogICAgICAic2NoZW1hcyI6IDUsCiAgICAgICJyZXNwb25zZXMiOiA1LAogICAgICAiYWRkZWREYXRlIjogIjIwMjEtMDItMDlUMTA6NTU6MDIuNDVaIiwKICAgICAgImFwaUlkIjogMSwKICAgICAgImlkIjogIjYwMjI2YTA2NWM0ODViZTQwNjA0YmQyZCIsCiAgICAgICJ0aXRsZSI6ICJhcGl3YXkgQm9vayBMaWJyYXJ5IEV4YW1wbGUgQVBJIiwKICAgICAgInRlY2huaWNhbGx5VmFsaWQiOiB0cnVlLAogICAgICAibWFqb3JWZXJzaW9uIjogMSwKICAgICAgInZlcnNpb24iOiAiMS4wLjAiCiAgICB9LAogICAgewogICAgICAiZW5kcG9pbnRzIjogNCwKICAgICAgInNjaGVtYXMiOiA1LAogICAgICAicmVzcG9uc2VzIjogNSwKICAgICAgImFkZGVkRGF0ZSI6ICIyMDIxLTAyLTA5VDEwOjU1OjAyLjg2NVoiLAogICAgICAiYXBpSWQiOiAxLAogICAgICAiaWQiOiAiNjAyMjZhMDY1YzQ4NWJlNDA2MDRiZDJmIiwKICAgICAgImRpc3RyaWJ1dGUiOiB0cnVlLAogICAgICAidGl0bGUiOiAiYXBpd2F5IEJvb2sgTGlicmFyeSBFeGFtcGxlIEFQSSIsCiAgICAgICJmdW5jdGlvbmFsbHlWYWxpZCI6IHRydWUsCiAgICAgICJ0ZWNobmljYWxseVZhbGlkIjogdHJ1ZSwKICAgICAgIm1ham9yVmVyc2lvbiI6IDEsCiAgICAgICJ2ZXJzaW9uIjogIjEuMC4wIgogICAgfQogIF0sCiAgImxpbmtzIjogWwogICAgewogICAgICAiaHJlZiI6ICIvdjEvT3BlbkFwaVNwZWNzP1NraXA9MCZUYWtlPTUwJkFwaUlkPTEiLAogICAgICAicmVsIjogImZpcnN0IiwKICAgICAgIm1ldGhvZCI6ICJHRVQiCiAgICB9LAogICAgewogICAgICAiaHJlZiI6ICIvdjEvT3BlbkFwaVNwZWNzP1NraXA9MCZUYWtlPTUwJkFwaUlkPTEiLAogICAgICAicmVsIjogInNlbGYiLAogICAgICAibWV0aG9kIjogIkdFVCIKICAgIH0KICBdLAogICJjb3VudCI6IDMsCiAgInRha2VuIjogNTAKfQ== HTTP/1.1
+Host: httpbingo.org
+
+###
+
+# Block 5
+# More composite JsonPath queries
+
+# @name eightVariables5
+
+@myvar5 = {{dataSource2.response.body.$.results[?(@.version=='1.0.0' && @.distribute==true)].id}}
+
+GET /anything/{{myvar5}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 6
+# Variables that don't exist
+
+@myVar6 = {{doesnt-exist.response.body.$.hello}}
+
+GET /anything/{{myVar6}} HTTP/1.1
+Host: httpbin.org
+
+###
+
+# Block 7
+# Spaces in Quotes in selectors
+
+@myVar7 = {{dataSource.response.body.$[?(@.displayName=='Group Architecture')].id}}
+
+# @name eightVariables7
+
+GET /anything/{{myVar7}} HTTP/1.1
+Host: httpbin.org
+
+###

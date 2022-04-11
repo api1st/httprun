@@ -1,0 +1,14 @@
+# @name myRequest
+
+GET /anything/hello HTTP/1.1
+Host: httpbin.org
+
+###
+
+@var = {{myRequest.request.url}}
+
+###
+
+GET {{var}} HTTP/1.1
+
+###
