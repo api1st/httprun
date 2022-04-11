@@ -34,7 +34,7 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("6-FormMultipart.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/6-FormMultipart.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);

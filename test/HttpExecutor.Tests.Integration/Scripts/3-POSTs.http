@@ -43,7 +43,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-< TextFile.txt
+< Scripts/TextFile.txt
 
 ###
 
@@ -56,7 +56,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: image/png
 
-< partly_cloudy.png
+< Scripts/partly_cloudy.png
 
 ###
 
@@ -69,7 +69,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-< invalid.txt
+< Scripts/invalid.txt
 
 ###
 
@@ -82,7 +82,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-< ./Child/TextFile.txt
+< Scripts/Child/TextFile.txt
 
 ###
 
@@ -97,7 +97,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-<@ TextFileWithVariables.txt
+<@ Scripts/TextFileWithVariables.txt
 
 ### 
 
@@ -112,7 +112,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-< TextFileWithVariables.txt
+< Scripts/TextFileWithVariables.txt
 
 ### 
 
@@ -127,7 +127,7 @@ POST /post HTTP/1.1
 Host: httpbin.org
 Content-Type: text/plain
 
-<@ TextFileWithInvalidVariables.txt
+<@ Scripts/TextFileWithInvalidVariables.txt
 
 ### 
 
