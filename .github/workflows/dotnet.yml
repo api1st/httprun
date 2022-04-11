@@ -43,7 +43,7 @@ jobs:
         draft: false
         prerelease: false
         release_name: ${{ steps.date.outputs.date }}
-        tag_name: ${{ github.ref }}
+        tag_name: ${{ github.ref }}-${{ steps.date.outputs.date }}
         body: Release of httprun
       env:
         GITHUB_TOKEN: ${{ github.token }}  
