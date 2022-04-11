@@ -28,14 +28,14 @@ jobs:
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')" 
     - name: Publish Unix version
       run: dotnet publish -c Release -r linux-x64 --self-contained true -o ./rel-linux ./src/HttpExecutor/HttpExecutor.csproj
-    - name: Zip linux version
-      run: |
-        zip httprun-${{ steps.date.outputs.date }}-linux.gz  --junk-paths -i ./rel-linux/
+#    - name: Zip linux version
+#      run: |
+#        zip httprun-${{ steps.date.outputs.date }}-linux.gz  --junk-paths -i rel-linux/
     - name: Publish Windows version
       run: dotnet publish -c Release -r win-x64 --self-contained true -o ./rel-win ./src/HttpExecutor/HttpExecutor.csproj
     - name: Zip Windows version
       run: |
-        zip httprun-${{ steps.date.outputs.date }}-win64.zip  --junk-paths -i ./rel-win/    
+        zip httprun-${{ steps.date.outputs.date }}-win64.zip  --junk-paths -i rel-win/    
     - name: release
       uses: actions/create-release@v1
       id: create_release
