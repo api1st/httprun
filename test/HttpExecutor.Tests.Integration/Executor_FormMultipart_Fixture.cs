@@ -13,10 +13,10 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_FormMultipart_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private IAppOptions _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly IAppOptions _appOptions;
         
         public Executor_FormMultipart_Fixture(ITestOutputHelper outputHelper)
         {
@@ -49,7 +49,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the message", _variableProvider.Resolve("{{sixForm1.response.body.$.form.message}}"));
         }
 
@@ -58,7 +58,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(1));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the message", _variableProvider.Resolve("{{sixForm2.response.body.$.form.message}}"));
             Assert.Equal("This is the second message part", _variableProvider.Resolve("{{sixForm2.response.body.$.form.message2}}"));
         }
@@ -68,7 +68,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(2));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("This is a text file with some content", _variableProvider.Resolve("{{sixForm3.response.body.$.files.file}}"));
         }
 
@@ -77,7 +77,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(3));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("This is a text file with some content", _variableProvider.Resolve("{{sixForm4.response.body.$.files.file}}"));
             Assert.Equal("This is a text file with some content", _variableProvider.Resolve("{{sixForm4.response.body.$.files.file2}}"));
         }
@@ -87,7 +87,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(4));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("This is a text file with some content", _variableProvider.Resolve("{{sixForm5.response.body.$.files.file}}"));
             Assert.Equal("data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAdVJREFUaN7tmc1thDAQRimBElwCJVBCSvAxR5fgEiiBEiiBErhyIx24A2cc2WhiAf4ZA1rJkZ4UZZPN9/AwHrON1rr5ZJoqUAWqQBWoAlWgxJf++WaAAGZAAdpD2dfM7zDS/yopAGE6YDoIHMLIdK8KQIAWGIAtQ8Bh/r59bQWQjCBILCkSJIF1XVuAA9Jivm9ROd0ukS0AQTtgA7SH+Vn31EoEBSAMA2YUUAHiJDyWcCtBuidIArZEroJewVEpjQSJjiIgMsMbpHdjf53sCcEWSxEYCQKOyZQhkshZBZYkYEtHeLVPQSGJnHIS0QI2/FIo+L+VILTXOUVA3BD+D3Q/pAqoFIEebUxFQQLJN/Ojo0TEqDG/JgBv1hdgeVNAP4CKPSvkCKiCQc1KSMRs2+x902hO/Z4cYFhgWOQHY8zo9hOKgCCGH71BEXcqHjEBKDft5gowypVH4YeLgKE9ZSO10cxz7z7TFJqxOEUgZxyYbPi+0M4uSRuZPYCnCPBA6TwrYCWWyFbJImo/FTMpM6pAG5CYvDO0LDii7x2JNAtdSGxuQyp41Q87UqkHW8NJzYsbw+8d6Y5Hi+7qbw8IyOIPd9HRVD8qUD8fqAJVoApUgSrwqfwCJ6xaZshM+xMAAAAASUVORK5CYII=", _variableProvider.Resolve("{{sixForm5.response.body.$.files.file2}}"));
         }
@@ -97,7 +97,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(5));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the message", _variableProvider.Resolve("{{sixForm6.response.body.$.form.message}}"));
             Assert.Equal("data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAdVJREFUaN7tmc1thDAQRimBElwCJVBCSvAxR5fgEiiBEiiBErhyIx24A2cc2WhiAf4ZA1rJkZ4UZZPN9/AwHrON1rr5ZJoqUAWqQBWoAlWgxJf++WaAAGZAAdpD2dfM7zDS/yopAGE6YDoIHMLIdK8KQIAWGIAtQ8Bh/r59bQWQjCBILCkSJIF1XVuAA9Jivm9ROd0ukS0AQTtgA7SH+Vn31EoEBSAMA2YUUAHiJDyWcCtBuidIArZEroJewVEpjQSJjiIgMsMbpHdjf53sCcEWSxEYCQKOyZQhkshZBZYkYEtHeLVPQSGJnHIS0QI2/FIo+L+VILTXOUVA3BD+D3Q/pAqoFIEebUxFQQLJN/Ojo0TEqDG/JgBv1hdgeVNAP4CKPSvkCKiCQc1KSMRs2+x902hO/Z4cYFhgWOQHY8zo9hOKgCCGH71BEXcqHjEBKDft5gowypVH4YeLgKE9ZSO10cxz7z7TFJqxOEUgZxyYbPi+0M4uSRuZPYCnCPBA6TwrYCWWyFbJImo/FTMpM6pAG5CYvDO0LDii7x2JNAtdSGxuQyp41Q87UqkHW8NJzYsbw+8d6Y5Hi+7qbw8IyOIPd9HRVD8qUD8fqAJVoApUgSrwqfwCJ6xaZshM+xMAAAAASUVORK5CYII=", _variableProvider.Resolve("{{sixForm6.response.body.$.files.file}}"));
         }
@@ -107,7 +107,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(6));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the message", _variableProvider.Resolve("{{sixForm7.response.body.$.form.message}}"));
             Assert.Equal("data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAdVJREFUaN7tmc1thDAQRimBElwCJVBCSvAxR5fgEiiBEiiBErhyIx24A2cc2WhiAf4ZA1rJkZ4UZZPN9/AwHrON1rr5ZJoqUAWqQBWoAlWgxJf++WaAAGZAAdpD2dfM7zDS/yopAGE6YDoIHMLIdK8KQIAWGIAtQ8Bh/r59bQWQjCBILCkSJIF1XVuAA9Jivm9ROd0ukS0AQTtgA7SH+Vn31EoEBSAMA2YUUAHiJDyWcCtBuidIArZEroJewVEpjQSJjiIgMsMbpHdjf53sCcEWSxEYCQKOyZQhkshZBZYkYEtHeLVPQSGJnHIS0QI2/FIo+L+VILTXOUVA3BD+D3Q/pAqoFIEebUxFQQLJN/Ojo0TEqDG/JgBv1hdgeVNAP4CKPSvkCKiCQc1KSMRs2+x902hO/Z4cYFhgWOQHY8zo9hOKgCCGH71BEXcqHjEBKDft5gowypVH4YeLgKE9ZSO10cxz7z7TFJqxOEUgZxyYbPi+0M4uSRuZPYCnCPBA6TwrYCWWyFbJImo/FTMpM6pAG5CYvDO0LDii7x2JNAtdSGxuQyp41Q87UqkHW8NJzYsbw+8d6Y5Hi+7qbw8IyOIPd9HRVD8qUD8fqAJVoApUgSrwqfwCJ6xaZshM+xMAAAAASUVORK5CYII=", _variableProvider.Resolve("{{sixForm7.response.body.$.files.file}}"));
         }
@@ -117,7 +117,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(7));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("Hello, this is the message", _variableProvider.Resolve("{{sixForm8.response.body.$.form.message}}"));
             Assert.Equal("data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAdVJREFUaN7tmc1thDAQRimBElwCJVBCSvAxR5fgEiiBEiiBErhyIx24A2cc2WhiAf4ZA1rJkZ4UZZPN9/AwHrON1rr5ZJoqUAWqQBWoAlWgxJf++WaAAGZAAdpD2dfM7zDS/yopAGE6YDoIHMLIdK8KQIAWGIAtQ8Bh/r59bQWQjCBILCkSJIF1XVuAA9Jivm9ROd0ukS0AQTtgA7SH+Vn31EoEBSAMA2YUUAHiJDyWcCtBuidIArZEroJewVEpjQSJjiIgMsMbpHdjf53sCcEWSxEYCQKOyZQhkshZBZYkYEtHeLVPQSGJnHIS0QI2/FIo+L+VILTXOUVA3BD+D3Q/pAqoFIEebUxFQQLJN/Ojo0TEqDG/JgBv1hdgeVNAP4CKPSvkCKiCQc1KSMRs2+x902hO/Z4cYFhgWOQHY8zo9hOKgCCGH71BEXcqHjEBKDft5gowypVH4YeLgKE9ZSO10cxz7z7TFJqxOEUgZxyYbPi+0M4uSRuZPYCnCPBA6TwrYCWWyFbJImo/FTMpM6pAG5CYvDO0LDii7x2JNAtdSGxuQyp41Q87UqkHW8NJzYsbw+8d6Y5Hi+7qbw8IyOIPd9HRVD8qUD8fqAJVoApUgSrwqfwCJ6xaZshM+xMAAAAASUVORK5CYII=", _variableProvider.Resolve("{{sixForm8.response.body.$.files.file}}"));
             Assert.Equal("This is a text file with some content", _variableProvider.Resolve("{{sixForm8.response.body.$.files.file2}}"));
@@ -128,7 +128,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(8));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message")?.Value<string>());
@@ -139,7 +139,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(9));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("Hello, this is This is the variable value. the message", json.SelectToken("$.form.message")?.Value<string>());
@@ -151,7 +151,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(10));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("This is a text file with some content", json.SelectToken("$.files.file")?.Value<string>());
@@ -162,7 +162,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(11));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("This is a text file with some content - Child", _variableProvider.Resolve("{{sixForm12.response.body.$.files.file}}"));
         }
 
@@ -171,7 +171,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(12));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("This is a text file with some content Hello it has been replaced", _variableProvider.Resolve("{{sixForm13.response.body.$.files.file}}"));
         }
 
@@ -180,7 +180,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(13));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file")?.Value<string>());
@@ -190,8 +190,8 @@ namespace HttpExecutor.Tests.Integration
         public async void Execute_Request_Multipart_filename_with_variable_contents_containing_variables_resolved()
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(14));
-
-            Assert.Equal(200, result.Item3.StatusCode);
+            
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("This is a text file with some content {{myLocalVariable}}", json.SelectToken("$.files.file")?.Value<string>());
@@ -202,7 +202,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(15));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             // Can't use _variableResolver to read the value, as it will resolve the unresolved variables
             var json = JObject.Parse(result.Item3.Body);
             Assert.Equal("This is a text file with some content Successfully replaced value.", json.SelectToken("$.files.file")?.Value<string>());

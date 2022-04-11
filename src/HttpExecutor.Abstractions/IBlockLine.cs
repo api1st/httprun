@@ -6,7 +6,7 @@
 
         string Raw { get; }
 
-        IBlockLine Previous { get; set; }
+        IBlockLine? Previous { get; set; }
 
         int LineNumber { get; }
     }

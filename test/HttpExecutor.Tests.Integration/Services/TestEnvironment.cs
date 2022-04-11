@@ -5,7 +5,7 @@ namespace HttpExecutor.Tests.Integration.Services
 {
     public class TestEnvironment : IEnvironment
     {
-        private IDictionary<string, string> _values = new Dictionary<string, string>();
+        private readonly IDictionary<string, string> _values = new Dictionary<string, string>();
 
         public void Exit(int code)
         {

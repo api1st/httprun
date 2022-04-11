@@ -16,21 +16,21 @@ namespace HttpExecutor.Services
             Files = new List<IRequestBodyFile>();
         }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string Verb { get; set; }
+        public string Verb { get; set; } = "GET";
 
-        public string Path { get; set; }
+        public string Path { get; set; } = "/";
 
-        public string Scheme { get; set; }
+        public string Scheme { get; set; } = "http";
 
-        public string Host { get; set; }
+        public string Host { get; set; } = "localhost";
 
         public bool IsMultipartFormData { get; set; }
 
         public ICollection<IHttpHeader> Headers { get; }
 
-        public string Body { get; set; }
+        public string Body { get; set; } = string.Empty;
         
         public ICollection<IRequestBodyFile> Files { get; set; }
 

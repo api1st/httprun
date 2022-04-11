@@ -172,10 +172,10 @@ namespace HttpExecutor.Services
                 }
                 else
                 {
-                    var fileBody = fileParser.IsFileInput(line);
-                    if (string.IsNullOrWhiteSpace(current.Value) && fileBody.isFile)
+                    var (isFile, exists) = fileParser.IsFileInput(line);
+                    if (string.IsNullOrWhiteSpace(current.Value) && isFile)
                     {
-                        if (fileBody.exists)
+                        if (exists)
                         {
                             current.File = fileParser.FileContent(line);
                         }
@@ -226,7 +226,7 @@ namespace HttpExecutor.Services
             public IRequestBodyFile File { get; set; }
         }
 
-        private HttpMethod MapMethod(string verb)
+        private static HttpMethod MapMethod(string verb)
         {
             switch (verb)
             {

@@ -11,7 +11,7 @@ namespace HttpExecutor.Tests.Integration
 
         public void Dispose()
         {
-
+            GC.SuppressFinalize(this);
         }
     }
 }

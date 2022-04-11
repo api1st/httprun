@@ -27,9 +27,12 @@ namespace HttpExecutor.Services
             _unresolvedVariables = new List<string>();
         }
 
-        public string Register(string name, string value)
+        public string? Register(string name, string value)
         {
-            string warning = null;
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (value == null) throw new ArgumentNullException(nameof(value));
+
+            string? warning = null;
 
             if (_variables.ContainsKey(name))
             {
