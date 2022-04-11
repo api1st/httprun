@@ -33,6 +33,8 @@ jobs:
 #        zip httprun-${{ steps.date.outputs.date }}-linux.gz  --junk-paths -i rel-linux/
     - name: Publish Windows version
       run: dotnet publish -c Release -r win-x64 --self-contained true -o ./rel-win ./src/HttpExecutor/HttpExecutor.csproj
+    - name: Check files
+      run: ls -latr ./rel-win
     - name: Zip Windows version
       run: |
         zip httprun-${{ steps.date.outputs.date }}-win64.zip  --junk-paths -i rel-win/    
