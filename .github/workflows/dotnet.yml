@@ -1,8 +1,6 @@
 name: .NET
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -21,11 +19,47 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Find scripts
-      run: |
-        ls -la ./test/HttpExecutor.Tests.Integration/Scripts
-    - name: Find scripts
-      run: |
-        ls -la ./test/HttpExecutor.Tests.Integration/bin/Debug/net5.0/Scripts
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')" 
+    - name: Publish Unix version
+      run: dotnet publish -c Release -r linux-x64 --self-contained true -o ./rel-linux
+    - name: Zip linux version
+      run: |
+        zip httprun-${{ steps.date.outputs.date }}-linux.gz  --junk-paths -i ./rel-linux/
+    - name: Publish Windows version
+      run: dotnet publish -c Release -r win-x64 --self-contained true -o ./rel-win
+    - name: Zip Windows version
+      run: |
+        zip httprun-${{ steps.date.outputs.date }}-win64.zip  --junk-paths -i ./rel-win/    
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ steps.date.outputs.date }}
+        tag_name: ${{ github.ref }}
+        body: Release of httprun
+      env:
+        GITHUB_TOKEN: ${{ github.token }}  
+    - name: upload linux artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: httprun-${{ steps.date.outputs.date }}-linux.gz
+        asset_name: httprun-${{ steps.date.outputs.date }}-linux.gz
+        asset_content_type: application/gzip 
+    - name: upload Windows artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: httprun-${{ steps.date.outputs.date }}-win64.zip
+        asset_name: httprun-${{ steps.date.outputs.date }}-win64.zip
+        asset_content_type: application/gzip         
