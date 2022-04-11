@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace HttpExecutor.Tests.Integration
 {
@@ -6,10 +7,20 @@ namespace HttpExecutor.Tests.Integration
     {
         public PostFileBaseFixture()
         {
-            var scriptDirectory = System.IO.Directory.GetParent("1-GETs.http");
+            var scriptDirectory = System.IO.Directory.GetParent("./Scripts/1-GETs.http");
             if (scriptDirectory != null)
             {
-                System.IO.Directory.SetCurrentDirectory(scriptDirectory.FullName);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    if (scriptDirectory.Parent != null)
+                    {
+                        System.IO.Directory.SetCurrentDirectory(scriptDirectory.Parent.FullName);
+                    }
+                }
+                else
+                {
+                    System.IO.Directory.SetCurrentDirectory(scriptDirectory.FullName);
+                }
             }
         }
 
