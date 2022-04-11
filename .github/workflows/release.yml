@@ -4,9 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    branches-ignore:
-      - develop
-      - 'feature/**'
+      - '!develop'
+      - '!feature/**'
       
 jobs:
   build:
