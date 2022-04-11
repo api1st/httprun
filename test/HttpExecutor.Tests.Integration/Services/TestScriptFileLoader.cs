@@ -11,6 +11,10 @@ namespace HttpExecutor.Tests.Integration.Services
         {
             Console.WriteLine($"Current working directory: {System.Environment.CurrentDirectory}");
             Console.WriteLine($"File to load: '{System.Environment.CurrentDirectory}/{path}'");
+            if (!System.IO.File.Exists(path))
+            {
+                Console.WriteLine("The file does not exist.");
+            }
             return System.IO.File.ReadAllLinesAsync(path, cancellationToken);
         }
     }
