@@ -6,7 +6,7 @@ namespace HttpExecutor.Services
 {
     public class RequestVerbParser : IRegexParser
     {
-        private const string RegexString = "^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS|TRACE)[ \\t]+(http(s?):\\/\\/.*)?\\/?([a-zA-Z0-9\\.\\/\\-\\?\\=\\&_{}\\$%\\@\\:]*)[ \\t]+HTTP\\/1\\.1[ \\t]*$";
+        private const string RegexString = "^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS|TRACE)[ \\t]+(http(s?):\\/\\/.*)?\\/?([a-zA-Z0-9\\.\\/\\-\\?\\=\\&_{}\\$%\\@\\:]*)(?:[ \t]+HTTP\\/(?:1\\.0|1\\.1|2|3)[ \t]*)?$";
 
         public bool IsMatch(string value)
         {
