@@ -12,14 +12,13 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_File_Missing_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private IAppOptions _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IAppOptions _appOptions;
         
         public Executor_File_Missing_Fixture(ITestOutputHelper outputHelper)
         {
-            _appOptions = new AppOptions {RequestTimeout = 30000};
+            _appOptions = new AppOptions {RequestTimeout = 30000, TerminateOnFileAccessFailure = true};
 
             var services = new ServiceCollection();
             services.AddSingleton(outputHelper);
@@ -33,12 +32,10 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("9-Missing-File.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/9-Missing-File.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
-
-            _variableProvider = provider.GetRequiredService<IVariableProvider>();
 
             _subject = provider.GetRequiredService<IBlockExecutor>();
         }
@@ -46,7 +43,7 @@ namespace HttpExecutor.Tests.Integration
         [Fact]
         public async void Execute_Request_Multipart_single_file()
         {
-            Assert.ThrowsAsync<Exception>(async () => await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0)));
+            await Assert.ThrowsAsync<Exception>(async () => await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0)));
         }
     }
 }

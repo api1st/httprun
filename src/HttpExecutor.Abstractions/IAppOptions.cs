@@ -23,5 +23,7 @@ namespace HttpExecutor.Abstractions
         bool TerminateOnVariableResolutionFailure { get; }
 
         bool TerminateOnFileAccessFailure { get; }
+
+        bool SkipSslValidation { get; }
     }
 }

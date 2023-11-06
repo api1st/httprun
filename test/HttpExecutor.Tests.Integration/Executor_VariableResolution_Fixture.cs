@@ -12,10 +12,10 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_VariableResolution_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private Mock<IAppOptions> _appOptions;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly Mock<IAppOptions> _appOptions;
 
         public Executor_VariableResolution_Fixture(ITestOutputHelper outputHelper)
         {
@@ -34,7 +34,7 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("8-VariableResolution.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/8-VariableResolution.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
@@ -103,7 +103,7 @@ namespace HttpExecutor.Tests.Integration
             // Execute test
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(6));
 
-            Assert.Equal(1, result.Item1.Count());
+            Assert.Single(result.Item1);
         }
 
         [Fact]
@@ -126,7 +126,7 @@ namespace HttpExecutor.Tests.Integration
             // execute test
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(7));
 
-            Assert.Equal(200, result.Item3.StatusCode);
+            Assert.Equal(200, result.Item3?.StatusCode);
             Assert.Equal("http://httpbin.org/anything/1", _variableProvider.Resolve("{{eightVariables7.response.body.$.url}}"));
         }
     }

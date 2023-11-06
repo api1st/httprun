@@ -12,11 +12,11 @@ namespace HttpExecutor.Tests.Integration
 {
     public class Executor_SystemVariables_Fixture : IClassFixture<PostFileBaseFixture>
     {
-        private HttpFile _httpFile;
-        private IBlockExecutor _subject;
-        private IVariableProvider _variableProvider;
-        private IDateTimeNowProvider _dateTimeNowProvider;
-        private IEnvironment _environment;
+        private readonly HttpFile _httpFile;
+        private readonly IBlockExecutor _subject;
+        private readonly IVariableProvider _variableProvider;
+        private readonly IDateTimeNowProvider _dateTimeNowProvider;
+        private readonly IEnvironment _environment;
 
         public Executor_SystemVariables_Fixture(ITestOutputHelper outputHelper)
         {
@@ -32,7 +32,7 @@ namespace HttpExecutor.Tests.Integration
             var provider = services.BuildServiceProvider();
 
             var reader = new TestScriptFileLoader();
-            var scriptContent = reader.ReadAllLinesAsync("2-SystemVariables.http").Result;
+            var scriptContent = reader.ReadAllLinesAsync("Scripts/2-SystemVariables.http").Result;
 
             var parser = provider.GetRequiredService<IParser>();
             _httpFile = parser.Parse(scriptContent);
@@ -51,7 +51,7 @@ namespace HttpExecutor.Tests.Integration
         {
             var result = await _subject.ExecuteAsync(_httpFile.Blocks.ElementAt(0));
 
-            Assert.True(Guid.TryParse(_variableProvider.Resolve("{{myGuid}}"), out Guid providedGuid));
+            Assert.True(Guid.TryParse(_variableProvider.Resolve("{{myGuid}}"), out Guid _));
         }
 
         [Fact]

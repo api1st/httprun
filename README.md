@@ -18,14 +18,16 @@ The Visual Studio Code Rest-Client has become the defacto way of building and ex
 
 ## Installation
 
+[![.NET](https://github.com/api1st/httprun/actions/workflows/release.yml/badge.svg)](https://github.com/api1st/httprun/releases)
+
 1. Download the pre-built binaries
 
 | OS | Download |
 | -- | -------- |
-| Windows | [httprun.exe](releases/httprun.exe) |
-| Unix | [httprun](releases/ubuntu/httprun) |
+| Windows | [httprun.exe](https://github.com/api1st/httprun/releases) |
+| Unix | [httprun](https://github.com/api1st/httprun/releases) |
 
-or 
+or
 
 Compile source code `dotnet build`
 

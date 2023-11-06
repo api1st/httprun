@@ -5,6 +5,6 @@ namespace HttpExecutor.Abstractions
 {
     public interface IBlockExecutor
     {
-        Task<(IEnumerable<Warning>, IHttpRequest, IHttpResponse)> ExecuteAsync(ExecutionBlock block);
+        Task<(IEnumerable<Warning>, IHttpRequest?, IHttpResponse?)> ExecuteAsync(ExecutionBlock block);
     }
 }
