@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Authentication;
 using HttpExecutor.Abstractions;
 using HttpExecutor.Services;
@@ -40,24 +41,43 @@ namespace HttpExecutor.Ioc
             services.AddTransient<IDynamicVariableResolver, LocalDateTimeVariableResolver>();
 
             services.AddHttpClient("follow-redirect").ConfigurePrimaryHttpMessageHandler(() =>
-            {
-                return new HttpClientHandler
-                {
-                    AllowAutoRedirect = true,
-                    SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
-                };
-            });
+			{
+				return CreateHttpClientHandler(true);
+			});
 
             services.AddHttpClient("no-follow-redirect").ConfigurePrimaryHttpMessageHandler(() =>
             {
-                return new HttpClientHandler
-                {
-                    AllowAutoRedirect = false,
-                    SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
-                };
+                return CreateHttpClientHandler(false);
             });
-            
-            return services;
+
+			services.AddHttpClient("follow-redirect-insecure").ConfigurePrimaryHttpMessageHandler(() =>
+			{
+				return CreateHttpClientHandler(true, true);
+			});
+
+			services.AddHttpClient("no-follow-redirect-insecure").ConfigurePrimaryHttpMessageHandler(() =>
+			{
+				return CreateHttpClientHandler(false, true);
+			});
+
+			return services;
         }
-    }
+
+		private static HttpClientHandler CreateHttpClientHandler(bool allowAutoRedirect = true, bool skipSslValidation = false)
+		{
+			var handler = new HttpClientHandler
+			{
+				AllowAutoRedirect = allowAutoRedirect,
+				SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
+			};
+
+			if (skipSslValidation)
+			{
+                handler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true;
+
+			}
+
+            return handler;
+		}
+	}
 }

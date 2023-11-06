@@ -28,11 +28,11 @@ namespace HttpExecutor.Services
             
             if (_options.Follow300Responses)
             {
-                client = _httpClientFactory.CreateClient("follow-redirect");
+                client = _httpClientFactory.CreateClient(_options.SkipSslValidation ? "follow-redirect-insecure" : "follow-redirect");
             }
             else
             {
-                client = _httpClientFactory.CreateClient("no-follow-redirect");
+                client = _httpClientFactory.CreateClient(_options.SkipSslValidation ? "no-follow-redirect-insecure" : "no-follow-redirect");
             }
 
             HttpRequestMessage httpRequestMessage;

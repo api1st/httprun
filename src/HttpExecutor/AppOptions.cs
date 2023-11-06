@@ -35,5 +35,8 @@ namespace HttpExecutor
 
         [Option('e', "terminate-on-file-error", Required = false, Default = false, HelpText = "Terminate script on suspected file access failure.")]
         public bool TerminateOnFileAccessFailure { get; set; }
+
+        [Option('k', "insecure", Required = false, Default = false, HelpText = "Skip SSL certificate validation")]
+        public bool SkipSslValidation { get; set; }
     }
 }
