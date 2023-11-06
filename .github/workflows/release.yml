@@ -1,11 +1,9 @@
 name: Release
 
 on:
-  pull_request:
+  release:
     branches:
       - main
-      - '!develop'
-      - '!feature/**'
       
 jobs:
   build:
