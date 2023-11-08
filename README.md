@@ -114,7 +114,7 @@ Host: httpbin.org
 
 Confirmation to continue must be provided via the command line.
 
-Note: There is a command line switch to auto-confirm all notes when running in headless.
+Note: There is a command line switch to auto-confirm all notes when running in headless mode.
 
 ### Configurable success codes
 
